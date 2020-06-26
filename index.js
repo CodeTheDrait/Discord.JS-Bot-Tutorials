@@ -6,7 +6,7 @@ client.once('ready', () => {
     console.log('Tutorial Bot is online!');
 });
 
-client.commands = new Discord.Client()
+client.commands = new Discord.Collection() // I accidentally made this line day Discord.Client in the video! It needs to say Discord.Collection
 const fs = require("fs")
 fs.readdir("./commands/", (error, files) => {
     files = files.filter(f => f.endsWith(".js"))
