@@ -13,7 +13,7 @@ fs.readdir("./commands/", (error, files) => {
     files.forEach(f => {
         const command = require(`./commands/${f}`)
         client.commands.set(command.name, command)
-        console.log(`Command ${command.name} wad loaded!`)
+        console.log(`Command ${command.name} was loaded!`)
     });
 });
 
