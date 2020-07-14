@@ -6,7 +6,7 @@ client.once('ready', () => {
     console.log('Tutorial Bot is online!');
 });
 
-client.commands = new Discord.Collection() // I accidentally made this line day Discord.Client in the video! It needs to say Discord.Collection
+client.commands = new Discord.Collection() // I made some mistakes in my video, so all mistakes are fixed here!
 const fs = require("fs")
 fs.readdir("./commands/", (error, files) => {
     files = files.filter(f => f.endsWith(".js"))
@@ -23,6 +23,7 @@ client.on("message", message => {
     if (!message.content.startsWith(config.prefix)) return;
     const args = message.content.slice(config.prefix.length).split(" ")
     const command = args.shift()
+    const cmd = client.commands.get(command)
     if (cmd) {
         cmd.run(client, message, args)
     } else return;
