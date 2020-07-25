@@ -6,20 +6,21 @@ client.once('ready', () => {
     console.log('Tutorial Bot is online!');
 });
 
-client.commands = new Discord.Collection() // I made some mistakes in my video, so all mistakes are fixed here!
-const fs = require("fs")
-fs.readdir("./commands/", (error, files) => {
+client.commands = new Discord.Collection() // I made a couple of mistakes on the video, so they are all fixed here!
+const fs = require("fs");
+const { url } = require('inspector');
+fs.readdir("./Commands/", (error, files) => {
     files = files.filter(f => f.endsWith(".js"))
     files.forEach(f => {
-        const command = require(`./commands/${f}`)
-        client.commands.set(command.name, command)
-        console.log(`Command ${command.name} was loaded!`)
+        const command = require(`./Commands/${f}`)
+        bot.commands.set(command.name, command)
+        console.log(`Command ${command.name} was loaded.`)
     });
 });
 
 client.on("message", message => {
     if (message.author.bot) return;
-    if (message.channel.type === "dm") return;
+    if (message.channel.type === "dm") return; 
     if (!message.content.startsWith(config.prefix)) return;
     const args = message.content.slice(config.prefix.length).split(" ")
     const command = args.shift()
