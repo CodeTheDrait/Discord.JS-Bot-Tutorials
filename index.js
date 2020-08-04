@@ -8,10 +8,10 @@ client.once('ready', () => {
 
 client.commands = new Discord.Collection()
 const fs = require("fs")
-fs.readdir("./commands/", (error, files) => {
+fs.readdir("./Commands/", (error, files) => {
     files = files.filter(f => f.endsWith(".js"))
     files.forEach(f => {
-        const command = require(`./commands/${f}`)
+        const command = require(`./Commands/${f}`)
         client.commands.set(command.name, command)
         console.log(`Command ${command.name} was loaded!`)
     });
